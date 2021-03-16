@@ -2,11 +2,14 @@ import AnimalLogic from "../logics/animal";
 import { responseError, responseSuccess } from "../logics/utils/ligth/response";
 
 /**
- * @api {post} /parking
+ * @api {post} /animal
  * @apiName CreateAnimal
  * @apiGroup Animal
  *
- * @apiParam {String} plate license plate.
+ * @apiParam {String} type Type of animal.
+ * @apiParam {String} name Animal name.
+ * @apiParam {Number} weight Animal weight.
+ * @apiParam {Number} age Animal age in months.
  *
  * @apiSuccess {String} _id uid Animal.
  *
@@ -19,12 +22,12 @@ import { responseError, responseSuccess } from "../logics/utils/ligth/response";
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *       "message": "Invalid Plate"
+ *       "message": "One or more parameters missing. Please check documentation."
  *     }
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *       "message": "There is already an open reserve for this plate"
+ *       "message": "Invalid or undefined age."
  *     }
  */
 const createAnimalController = async (req, res) => {
@@ -37,30 +40,35 @@ const createAnimalController = async (req, res) => {
 }
 
 /**
- * @api {get} /parking/:id/out
- * @apiName OutReservation
- * @apiGroup Reservation
+ * @api {get} /animal
+ * @apiName getAnimals
+ * @apiGroup Animal
  *
+ * @apiParam {Number} size Animal weight.
+ * @apiParam {Number} offset Animal age in months.
+ * 
+ * 
  * @apiSuccessExample Success-Response:
- *     HTTP/1.1 204 OK
+ *     HTTP/1.1 200 OK
  *     {
+ *       "message": {
+ *          "animals": [
+ *              {
+ *                "_id": "604fb0bf96ddec102272b85f",
+ *                "type": "ox",
+ *                "name": "test",
+ *                "weight": 1000,
+ *                "age": 6,
+ *                "createdAt": "2021-03-15T19:08:47.405Z",
+ *                "updatedAt": "2021-03-15T19:08:47.405Z",
+ *                "__v": 0
+ *              }
+ *          ],
+ *          "totalCount": 1
+ *       }
+ * 
  *     }
  *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Bad Request
- *     {
- *       "message": "Reservation not found"
- *     }
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 400 Bad Request
- *     {
- *       "message": "Car can only be released after payment"
- *     }
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 400 Bad Request
- *     {
- *       "message": "This reserve is already released"
- *     }
  */
 const getAnimalsController = async (req, res) => {
     try {

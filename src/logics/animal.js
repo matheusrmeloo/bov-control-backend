@@ -33,7 +33,8 @@ export default class AnimalLogic extends Logic {
     }
     async getAnimals() {
         try {
-            const responseAnimals = await AnimalRepository.findAll();
+            let { size, offset } = this.params;
+            const responseAnimals = await AnimalRepository.findAll({size, offset});
             return { data: responseAnimals, code: 200 };
         } catch (err) {
             throw err;

@@ -10,22 +10,6 @@ const errors = {
     "INVALID_AGE": {
         "code": 400,
         "message": "Invalid or undefined age."
-    },
-    "NOT_PAID": {
-        "code": 400,
-        "message": "Car can only be released after payment"
-    },
-    "ALREADY_PAID": {
-        "code": 400,
-        "message": "This reservation is already paid"
-    },
-    "RESERVATION_NOT_FOUND": {
-        "code": 404,
-        "message": "Reservation not found"
-    },
-    "ALREADY_RELEASED": {
-        "code": 400,
-        "message": "This reserve is already released"
     }
 };
 

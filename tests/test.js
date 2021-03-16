@@ -22,8 +22,16 @@ context('Animal', async () => {
                 weight: Math.floor(Math.random() * (9999 - 1000 + 1) ) + 1000,
                 age: Math.floor(Math.random() * 2 ) + 2
             });
-            console.log("res:: ",res.body)
             expect(res.status).to.equal(201);
+        }));
+    });
+    context('Get Animals', async () => {
+        it('Should Success', mochaAsync(async () => {
+            const res = await methods.getAnimals(serve, {
+                size: 10,
+                offset:0
+            });
+            expect(res.status).to.equal(200);
         }));
     });
 });

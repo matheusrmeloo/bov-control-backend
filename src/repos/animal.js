@@ -8,13 +8,17 @@ class Animal extends Repository {
         super(AnimalSchema);
     }
 
-    findAll() {
+    findAll({size, offset}) {
         return new Promise((resolve, reject) => {
             AnimalSchema.prototype.model
             .find()
-            .exec((err, item) => {
+            .skip(offset == undefined ? 0 : offset)
+            .limit((size > 10 || !size || size <= 0) ? 10 : size)
+            .lean()
+            .exec(async (err, item) => {
+                const count = await AnimalSchema.prototype.model.find().countDocuments().exec()
                 if (err) { reject(err) }
-                resolve(item);
+                resolve({animals: item, totalCount: count});
             });
         });
     }
