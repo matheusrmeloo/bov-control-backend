@@ -22,6 +22,20 @@ class Animal extends Repository {
             });
         });
     }
+
+    findById({id}) {
+        return new Promise((resolve, reject) => {
+            AnimalSchema.prototype.model
+            .findById({
+                _id: id
+            })
+            .lean()
+            .exec(async (err, item) => {
+                if (err) { reject(err) }
+                resolve(item);
+            });
+        });
+    }
 }
 const AnimalRepository = new Animal();
 

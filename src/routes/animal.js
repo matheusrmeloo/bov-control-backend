@@ -1,4 +1,8 @@
-import {createAnimalController, getAnimalsController} from "../controllers";
+import {
+    createAnimalController, 
+    getAnimalsController,
+     getSpecificAnimalController
+} from "../controllers";
 
 const animal = [
     {
@@ -10,6 +14,11 @@ const animal = [
         method: 'get',
         path  : '/animal',
         route : getAnimalsController
+    },
+    {
+        method: 'get',
+        path  : '/animal/:id',
+        route : getSpecificAnimalController
     }
 ];
 

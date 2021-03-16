@@ -10,6 +10,10 @@ const errors = {
     "INVALID_AGE": {
         "code": 400,
         "message": "Invalid or undefined age."
+    },
+    "ANIMAL_NOT_FOUND": {
+        "code": 400,
+        "message": "Animal not found in the database, try to pass a valid ID."
     }
 };
 

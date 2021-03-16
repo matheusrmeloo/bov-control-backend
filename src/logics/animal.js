@@ -16,7 +16,7 @@ export default class AnimalLogic extends Logic {
             let { type, name, weight, age } = this.params;
 
             if (!type || !name || !weight || !age) { throwError("MISSING_PARAMETERS") };
-            if (typeof age != 'number'){throwError("INVALID_AGE")};
+            if (typeof age != 'number') { throwError("INVALID_AGE") };
 
             const responseSave = await this.save({
                 type,
@@ -34,7 +34,17 @@ export default class AnimalLogic extends Logic {
     async getAnimals() {
         try {
             let { size, offset } = this.params;
-            const responseAnimals = await AnimalRepository.findAll({size, offset});
+            const responseAnimals = await AnimalRepository.findAll({ size, offset });
+            return { data: responseAnimals, code: 200 };
+        } catch (err) {
+            throw err;
+        }
+    }
+    async getAnimalById() {
+        try {
+            let { id } = this.params;
+            const responseAnimals = await AnimalRepository.findById({ id });
+            if (!responseAnimals) { throwError("ANIMAL_NOT_FOUND") };
             return { data: responseAnimals, code: 200 };
         } catch (err) {
             throw err;

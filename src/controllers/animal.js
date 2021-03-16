@@ -66,7 +66,6 @@ const createAnimalController = async (req, res) => {
  *          ],
  *          "totalCount": 1
  *       }
- * 
  *     }
  *
  */
@@ -79,7 +78,44 @@ const getAnimalsController = async (req, res) => {
     }
 }
 
+/**
+ * @api {get} /animal/:id
+ * @apiName getSpecificAnimal
+ * @apiGroup Animal
+ * 
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "message": {
+ *         "_id": "604fb0bf96ddec102272b85f",
+ *         "type": "ox",
+ *         "name": "test",
+ *         "weight": 1000,
+ *         "age": 6,
+ *         "createdAt": "2021-03-15T19:08:47.405Z",
+ *         "updatedAt": "2021-03-15T19:08:47.405Z",
+ *         "__v": 0
+ *       }
+ *     }
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "message": "Animal not found in the database, try to pass a valid ID."
+ *     }
+ *
+ */
+ const getSpecificAnimalController = async (req, res) => {
+    try {
+        const animal = new AnimalLogic({id: req.params.id});
+        responseSuccess((await animal.getAnimalById()), res);
+    } catch (err) {
+        responseError(err, res);
+    }
+}
+
 export {
     createAnimalController,
-    getAnimalsController
+    getAnimalsController,
+    getSpecificAnimalController
 }

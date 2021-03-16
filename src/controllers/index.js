@@ -1,9 +1,11 @@
 import {
     createAnimalController,
-    getAnimalsController
+    getAnimalsController,
+    getSpecificAnimalController
 } from "./animal";
 
 export {
     createAnimalController,
     getAnimalsController,
+    getSpecificAnimalController
 }
