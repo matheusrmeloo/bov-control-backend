@@ -36,6 +36,26 @@ class Animal extends Repository {
             });
         });
     }
+
+    findByIdAndUpdate({id, type, name, weight, age}) {
+        return new Promise((resolve, reject) => {
+            AnimalSchema.prototype.model
+            .findByIdAndUpdate({_id: id},
+                {$set: {
+                    type,
+                    name,
+                    weight,
+                    age,
+                    updatedAt: new Date(),
+                }}
+            )
+            .lean()
+            .exec(async (err, item) => {
+                if (err) { reject(err) }
+                resolve(item);
+            });
+        });
+    }
 }
 const AnimalRepository = new Animal();
 

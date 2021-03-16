@@ -13,15 +13,14 @@ const methods = {
         .send(params)
         .then(res => res)
     },
-    payReservation: (server, params, id) => {
+    getSpecificAnimal: (server, id) => {
         return request(server)
-        .patch(`/api/parking/${id}/pay`)
-        .send(params)
+        .get(`/api/animal/${id}`)
         .then(res => res)
     },
-    historicReservationPerPlate: (server, params, plate) => {
+    updateAnimal: (server, params, id) => {
         return request(server)
-        .get(`/api/parking/${plate}`)
+        .patch(`/api/animal/${id}`)
         .send(params)
         .then(res => res)
     }

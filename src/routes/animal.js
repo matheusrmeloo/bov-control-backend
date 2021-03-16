@@ -1,24 +1,30 @@
 import {
-    createAnimalController, 
+    createAnimalController,
     getAnimalsController,
-     getSpecificAnimalController
+    getSpecificAnimalController,
+    updateAnimalController
 } from "../controllers";
 
 const animal = [
     {
         method: 'post',
-        path  : '/animal',
-        route : createAnimalController
+        path: '/animal',
+        route: createAnimalController
     },
     {
         method: 'get',
-        path  : '/animal',
-        route : getAnimalsController
+        path: '/animal',
+        route: getAnimalsController
     },
     {
         method: 'get',
-        path  : '/animal/:id',
-        route : getSpecificAnimalController
+        path: '/animal/:id',
+        route: getSpecificAnimalController
+    },
+    {
+        method: 'patch',
+        path: '/animal/:id',
+        route: updateAnimalController
     }
 ];
 

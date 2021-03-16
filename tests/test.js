@@ -5,8 +5,8 @@ const delay = require('delay');
 import {methods} from "./utils/request";
 const app = require("../app/index");
 
-context('Animal', async () => {
-    var serve;
+context('Animals', async () => {
+    var serve, id;
     before( async () =>  {
         await delay(10000);
         serve       = await app.app;
@@ -22,6 +22,7 @@ context('Animal', async () => {
                 weight: Math.floor(Math.random() * (9999 - 1000 + 1) ) + 1000,
                 age: Math.floor(Math.random() * 2 ) + 2
             });
+            id = res.body.message._id;
             expect(res.status).to.equal(201);
         }));
     });
@@ -32,6 +33,23 @@ context('Animal', async () => {
                 offset:0
             });
             expect(res.status).to.equal(200);
+        }));
+    });
+    context('Get Specific Animal', async () => {
+        it('Should Success', mochaAsync(async () => {
+            const res = await methods.getSpecificAnimal(serve, id);
+            expect(res.status).to.equal(200);
+        }));
+    });
+    context('Patch Specific Animal', async () => {
+        it('Should Success', mochaAsync(async () => {
+            const res = await methods.updateAnimal(serve, {
+                type: "cow",
+                name:`test${(Math.floor(Math.random() * (9999 - 1000 + 1) ) + 1000)}haha`,
+                weight: Math.floor(Math.random() * (9999 - 1000 + 1) ) + 1000,
+                age: Math.floor(Math.random() * 2 ) + 2
+            }, id);
+            expect(res.status).to.equal(204);
         }));
     });
 });

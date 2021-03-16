@@ -1,11 +1,13 @@
 import {
     createAnimalController,
     getAnimalsController,
-    getSpecificAnimalController
+    getSpecificAnimalController,
+    updateAnimalController
 } from "./animal";
 
 export {
     createAnimalController,
     getAnimalsController,
-    getSpecificAnimalController
+    getSpecificAnimalController,
+    updateAnimalController
 }

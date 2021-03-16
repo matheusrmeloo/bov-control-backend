@@ -43,9 +43,26 @@ export default class AnimalLogic extends Logic {
     async getAnimalById() {
         try {
             let { id } = this.params;
-            const responseAnimals = await AnimalRepository.findById({ id });
-            if (!responseAnimals) { throwError("ANIMAL_NOT_FOUND") };
-            return { data: responseAnimals, code: 200 };
+            const responseAnimal = await AnimalRepository.findById({ id });
+            if (!responseAnimal) { throwError("ANIMAL_NOT_FOUND") };
+            return { data: responseAnimal, code: 200 };
+        } catch (err) {
+            throw err;
+        }
+    }
+    async updateAnimalById() {
+        try {
+            let { id, type, name, weight, age } = this.params;
+            const responseAnimal = await AnimalRepository.findById({ id });
+            if (!responseAnimal) { throwError("ANIMAL_NOT_FOUND") };
+            await AnimalRepository.findByIdAndUpdate({ 
+                id,
+                type: !type ? responseAnimal.type : type,
+                name: !name ? responseAnimal.name : name,
+                weight: !weight ? responseAnimal.weight : weight,
+                age: !age ? responseAnimal.age : age
+            });
+            return { data: {}, code: 204 };
         } catch (err) {
             throw err;
         }

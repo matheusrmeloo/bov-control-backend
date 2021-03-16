@@ -44,8 +44,8 @@ const createAnimalController = async (req, res) => {
  * @apiName getAnimals
  * @apiGroup Animal
  *
- * @apiParam {Number} size Animal weight.
- * @apiParam {Number} offset Animal age in months.
+ * @apiParam {Number} size Size of data.
+ * @apiParam {Number} offset Offset of data.
  * 
  * 
  * @apiSuccessExample Success-Response:
@@ -114,8 +114,40 @@ const getAnimalsController = async (req, res) => {
     }
 }
 
+/**
+ * @api {patch} /animal/:id
+ * @apiName updateAnimal
+ * @apiGroup Animal
+ * 
+ * @apiParam {String} type Animal type (Optional).
+ * @apiParam {String} name Animal name (Optional).
+ * @apiParam {Number} weight Animal weight (Optional).
+ * @apiParam {Number} age Animal age in months (Optional).
+ * 
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 204 No Content
+ *     {
+ *     }
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "message": "Animal not found in the database, try to pass a valid ID."
+ *     }
+ *
+ */
+ const updateAnimalController = async (req, res) => {
+    try {
+        const animal = new AnimalLogic({id: req.params.id, ...req.body});
+        responseSuccess((await animal.updateAnimalById()), res);
+    } catch (err) {
+        responseError(err, res);
+    }
+}
+
 export {
     createAnimalController,
     getAnimalsController,
-    getSpecificAnimalController
+    getSpecificAnimalController,
+    updateAnimalController
 }
