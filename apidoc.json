@@ -1,0 +1,7 @@
+{
+    "name": "API - BOVCONTROL",
+    "version": "0.0.1",
+    "description": "Doc API Basic",
+    "title": "BovControlAPI",
+    "url" : "https://bovcontrol-dev.herokuapp.com/api"
+  }
