@@ -45,12 +45,20 @@ Full URL = `{host}/api/{endpoint}`
     GET /animal/:id - Get Specific animal
     PATCH /animal/:id - Modify specific animal
 
+### [`Complete Documentation`](https://matheusrmeloo.github.io/bov-control-backend/)
+
+# Heroku
+
+It is possible to test the project online, this repository is linked with a heroku app.
+
+That is our link for dev API: https://bovcontrol-dev.herokuapp.com/api/enpoint_url
+
 # Running Project
 After you have done the entire installation process, you can run the project by running the command in the project terminal, the command:
 ```console
 $ npm start
 ```
-And this will make the code read the txt file present in the code and present the output corresponding to the final position of the Rover.
+And this command will initialize the API so that you can receive calls locally.
 # Running Tests
 The code is covered by unit tests, so if you want to run the project tests, you only need to open the project terminal and execute the command:
 ```console
